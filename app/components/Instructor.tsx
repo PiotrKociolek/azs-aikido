@@ -1,6 +1,10 @@
 import { Lora } from "next/font/google";
-import Image from "next/image"; // Import komponentu Image dla optymalizacji zdjęć
+import Image from "next/image";
 import { INSTRUCTOR } from "../data/club";
+
+// STATYCZNY IMPORT: Importujemy zdjęcie bezpośrednio z folderu public
+// Dostosuj liczbę kropek "../", aby poprawnie wskazywały Twój folder public z poziomu tego komponentu
+import instruktorImg from "../../public/assets/instruktor.jpg";
 
 const display = Lora({
   subsets: ["latin", "latin-ext"],
@@ -16,7 +20,7 @@ export default function Instructor() {
           <div className="flex justify-center">
             <div className="relative h-56 w-56 overflow-hidden rounded-full border-4 border-[#C8102E] bg-neutral-200 shadow-xl sm:h-64 sm:w-64">
               <Image
-                src="/assets/instruktor.jpg" 
+                src={instruktorImg} 
                 alt={`Zdjęcie instruktora: ${INSTRUCTOR.name}`}
                 fill
                 className="object-cover"
