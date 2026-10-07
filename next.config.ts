@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
   /* Opcje wymagane do statycznego eksportu na GitHub Pages */
   output: "export",
@@ -7,16 +9,19 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   
-  /* Konfiguracja ścieżki pod repozytorium: autor_name/azs-aikido */
+  /* Konfiguracja ścieżki pod Twoje repozytorium na GitHubie */
   basePath: "/azs-aikido",
   assetPrefix: "/azs-aikido",
 
-  /* Twoje dotychczasowe opcje konfiguracyjne */
+  /* Opcje eksperymentalne i optymalizacyjne */
   experimental: {
     agentFeedback: true,
   },
   cacheComponents: true,
-  partialPrefetching: true,
+  
+  /* PPR zostało wyłączone, ponieważ blokowało eksport statyczny (output: "export") */
+  partialPrefetching: false, 
+
   turbopack: {
     rules: {
       "*.css": {
