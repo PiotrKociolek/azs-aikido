@@ -1,7 +1,5 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === "production";
-
 const nextConfig: NextConfig = {
   /* Opcje wymagane do statycznego eksportu na GitHub Pages */
   output: "export",
@@ -17,9 +15,12 @@ const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
   },
-  cacheComponents: true,
-  
-  /* PPR zostało wyłączone, ponieważ blokowało eksport statyczny (output: "export") */
+
+  /* 
+    Wyłączamy cacheComponents, ponieważ automatycznie wymusza PPR,
+    co blokuje kompilację statyczną (output: "export")
+  */
+  cacheComponents: false, 
   partialPrefetching: false, 
 
   turbopack: {
